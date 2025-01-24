@@ -10,11 +10,11 @@ export default function Header() {
   return (
     <div>
 
-  <div className="bg-[#F5F5F5] flex items-center justify-between px-4 sm:px-6 lg:px-10 h-12 ">
+      <div className="bg-[#F5F5F5] flex items-center justify-between px-4 sm:px-6 lg:px-10 h-12 ">
 
-    <div className="flex items-center">
+     <div className="flex items-center">
      <Image src={logo1} alt="logo" className="w-6 sm:w-8" /> 
-    </div>
+     </div>
    
     <div className="hidden sm:flex w-[200px] h-8 justify-center items-center xl:ml-[20%] lg:ml-[10%] sm:ml-[10%]">
       <p className="text-black text-sm sm:text-base font-medium">
@@ -56,10 +56,10 @@ export default function Header() {
                 <Link href="/Products" className="hover:underline">
                   New & Featured
                 </Link>
-                <Link href="#" className="hover:underline">
+                <Link href="/Men" className="hover:underline">
                   Men
                 </Link>
-                <Link href="#" className="hover:underline">
+                <Link href="/Women" className="hover:underline">
                   Women
                 </Link>
                 <Link href="#" className="hover:underline">
