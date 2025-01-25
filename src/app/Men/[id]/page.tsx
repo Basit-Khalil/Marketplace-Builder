@@ -1,10 +1,9 @@
-import { fetchProductById } from '../../../sanity/lib/sanity'; // Function to fetch product by ID
-import { urlFor } from '../../../sanity/lib/sanity'; // Image URL builder
+import { fetchProductById } from '../../../sanity/lib/sanity';
+import { urlFor } from '../../../sanity/lib/sanity';
 import Image from 'next/image';
-import { notFound } from 'next/navigation'; // Used to render a "not found" page if the product doesn't exist
-import { Image as SanityImage } from '@sanity/types'; // Import the Image type from Sanity
+import { notFound } from 'next/navigation';
+import { Image as SanityImage } from '@sanity/types';
 
-// Type for Product details
 interface Product {
   _id: string;
   name: string;
@@ -12,33 +11,30 @@ interface Product {
   description?: string;
   category: string;
   colors: string[];
-  image?: SanityImage; // Image type from Sanity
+  image?: SanityImage;
 }
 
-// Explicitly define the type for params
-interface ProductDetailPageProps {
+// Adjusted PageProps interface to match Next.js expectations
+interface PageProps {
   params: { id: string };
 }
 
-const ProductDetailPage = async ({ params }: ProductDetailPageProps) => {
-  const { id } = params; // Get the product ID from the URL
-
+const ProductDetailPage = async ({ params }: PageProps) => {
+  const { id } = params;
   let product: Product | null = null;
+
   try {
-    product = await fetchProductById(id); // Fetch the product data by ID
+    product = await fetchProductById(id);
   } catch (error) {
     console.error('Error fetching product:', error);
   }
 
-  // If the product is not found, render a 404 page or an error message
   if (!product) {
-    notFound(); // This automatically renders a 404 page
+    notFound();
   }
 
-  // Fallback image for when the product does not have an image
   const fallbackImage = '/placeholder.jpg';
 
-  // Render product details if found
   return (
     <div className="container mx-auto p-6">
       <h1 className="text-2xl font-bold">{product?.name}</h1>
@@ -46,7 +42,7 @@ const ProductDetailPage = async ({ params }: ProductDetailPageProps) => {
         {product?.image ? (
           <div className="md:w-1/2">
             <Image
-              src={urlFor(product.image)?.toString() || fallbackImage} // Safe check for undefined image
+              src={urlFor(product.image)?.toString() || fallbackImage}
               alt={product?.name || 'Product Image'}
               width={500}
               height={500}
@@ -76,3 +72,4 @@ const ProductDetailPage = async ({ params }: ProductDetailPageProps) => {
 };
 
 export default ProductDetailPage;
+
