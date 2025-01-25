@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Image as SanityImage } from '@sanity/types';
 
+// Define Product type as before
 interface Product {
   _id: string;
   name: string;
@@ -14,23 +15,23 @@ interface Product {
   image?: SanityImage;
 }
 
-// Adjusted PageProps interface to match Next.js expectations
+// Define PageProps without overcomplicating params type
 interface PageProps {
-  params: { id: string };
+  params: { id: string };  // Params are expected to be an object containing { id: string }
 }
 
 const ProductDetailPage = async ({ params }: PageProps) => {
-  const { id } = params;
-  let product: Product | null = null;
+  const { id } = params;  // Extract product ID from params
 
+  let product: Product | null = null;
   try {
-    product = await fetchProductById(id);
+    product = await fetchProductById(id);  // Fetch product based on ID
   } catch (error) {
     console.error('Error fetching product:', error);
   }
 
   if (!product) {
-    notFound();
+    notFound();  // Render a 404 page if no product found
   }
 
   const fallbackImage = '/placeholder.jpg';
@@ -72,4 +73,3 @@ const ProductDetailPage = async ({ params }: PageProps) => {
 };
 
 export default ProductDetailPage;
-
