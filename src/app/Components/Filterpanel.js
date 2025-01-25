@@ -1,4 +1,3 @@
-// components/FilterPanel.js
 import { useState } from 'react';
 
 const FilterPanel = ({ onFilterChange }) => {
@@ -40,7 +39,7 @@ const FilterPanel = ({ onFilterChange }) => {
           max="500"
           step="10"
           value={priceRange[0]}
-          onChange={(e) => setPriceRange([e.target.value, priceRange[1]])}
+          onChange={(e) => handlePriceChange(e)} // Use handlePriceChange for first range input
         />
         <input
           type="range"
@@ -48,7 +47,7 @@ const FilterPanel = ({ onFilterChange }) => {
           max="500"
           step="10"
           value={priceRange[1]}
-          onChange={(e) => setPriceRange([priceRange[0], e.target.value])}
+          onChange={(e) => handlePriceChange(e)} // Use handlePriceChange for second range input
         />
       </div>
 

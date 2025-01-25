@@ -1,5 +1,4 @@
-import { useState } from 'react';
-
+// Removed the unused import of useState
 const Modal = ({ message, onClose }) => {
   return (
     <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
@@ -17,4 +16,5 @@ const Modal = ({ message, onClose }) => {
 };
 
 export default Modal;
+
 

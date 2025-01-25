@@ -1,17 +1,23 @@
-
 import { fetchProducts } from '../../sanity/lib/sanity';
 import imageUrlBuilder from '@sanity/image-url';
-import { client } from '../../sanity/lib/sanity'; 
-import Link from 'next/link'; 
+import { client } from '../../sanity/lib/sanity';
+import Link from 'next/link';
 import SideBar from '../Components/Side';
-import Image from 'next/image';  // Importing Image from Next.js
+import NextImage from 'next/image'; // Renamed to 'NextImage' to avoid conflict
+import { Image as SanityImage } from '@sanity/types'; // Type-only import for Image from Sanity
 
-
-
+// Initialize image URL builder
 const builder = imageUrlBuilder(client);
 
-const urlFor = (source: any) => builder.image(source).url();
+// Function to generate image URL
+export const urlFor = (source: SanityImage): string | undefined => {
+  if (source) {
+    return builder.image(source).url();
+  }
+  return undefined;
+};
 
+// Type definition for Product
 interface Product {
   _id: string;
   name: string;
@@ -21,28 +27,28 @@ interface Product {
   colors: string[];
   inventory: number;
   status: string;
-  image: any;
+  image: SanityImage; // Use Sanity's Image type for the image field
 }
 
 const ProductsPage = async () => {
-  const products: Product[] = await fetchProducts(); // Fetch the products
+  // Fetch the products
+  const products: Product[] = await fetchProducts();
 
   return (
     <div className='flex'>
       <SideBar />
-     
       <div className="px-4 py-8">
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {products.map((product: Product) => (
             <li key={product._id}>
-           <Link href={`/Product/${product._id}`} passHref>
-           {product.image && (
-                  <Image 
-                    src={urlFor(product.image).toString()} 
-                    alt={product.name}  
-                    className="rounded-md" 
-                    width={300}  // Adjusted for consistency
-                    height={300} // Adjusted for consistency
+              <Link href={`/Product/${product._id}`} passHref>
+                {product.image && (
+                  <NextImage
+                    src={urlFor(product.image) || '/placeholder.jpg'} // Handle fallback image
+                    alt={product.name}
+                    className="rounded-md"
+                    width={300}
+                    height={300}
                   />
                 )}
                 <h1 className="text-[12px] text-[#9E3500] font-medium mt-2">{product.status}</h1>
