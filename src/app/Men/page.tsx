@@ -9,8 +9,8 @@ import { Image as SanityImage } from '@sanity/types'; // Type-only import for Im
 // Initialize image URL builder
 const builder = imageUrlBuilder(client);
 
-// Function to generate image URL
-export const urlFor = (source: SanityImage): string | undefined => {
+// Function to generate image URL (no export needed here)
+const urlFor = (source: SanityImage): string | undefined => {
   if (source) {
     return builder.image(source).url();
   }
@@ -30,7 +30,7 @@ interface Product {
   image: SanityImage; // Use Sanity's Image type for the image field
 }
 
-// Remove the unnecessary params from PageProps since we're not using it
+// ProductsPage component remains as the default export
 const ProductsPage = async () => {
   // Fetch the products
   const products: Product[] = await fetchProducts();
@@ -67,3 +67,4 @@ const ProductsPage = async () => {
 };
 
 export default ProductsPage;
+
