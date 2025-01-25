@@ -1,7 +1,8 @@
 import { fetchProductById } from '../../../sanity/lib/sanity';
 import { urlFor } from '../../../sanity/lib/sanity';
 import Image from 'next/image';
-import { notFound } from 'next/navigation';
+import { notFound } from 'next/navigation'; // Use `notFound` for 404 pages
+import { useParams } from 'next/navigation'; // Use the `useParams` hook to get dynamic route parameters
 import { Image as SanityImage } from '@sanity/types';
 
 // Define Product type as before
@@ -15,23 +16,20 @@ interface Product {
   image?: SanityImage;
 }
 
-// Define PageProps without overcomplicating params type
-interface PageProps {
-  params: { id: string };  // Params are expected to be an object containing { id: string }
-}
-
-const ProductDetailPage = async ({ params }: PageProps) => {
-  const { id } = params;  // Extract product ID from params
+const ProductDetailPage = async () => {
+  // Use the useParams hook to get the dynamic route parameters
+  const params = useParams();
+  const { id } = params; // Get the product ID from the URL
 
   let product: Product | null = null;
   try {
-    product = await fetchProductById(id);  // Fetch product based on ID
+    product = await fetchProductById(id); // Fetch product details based on ID
   } catch (error) {
     console.error('Error fetching product:', error);
   }
 
   if (!product) {
-    notFound();  // Render a 404 page if no product found
+    notFound(); // Render a 404 page if no product is found
   }
 
   const fallbackImage = '/placeholder.jpg';
