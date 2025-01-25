@@ -30,14 +30,8 @@ interface Product {
   image: SanityImage; // Use Sanity's Image type for the image field
 }
 
-// Type for page props that includes dynamic params (id)
-interface PageProps {
-  params: {
-    id: string;
-  };
-}
-
-const ProductsPage = async ({ params }: PageProps) => {
+// Remove the unnecessary params from PageProps since we're not using it
+const ProductsPage = async () => {
   // Fetch the products
   const products: Product[] = await fetchProducts();
 
