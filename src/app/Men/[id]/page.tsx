@@ -2,6 +2,7 @@ import { fetchProductById } from '../../../sanity/lib/sanity'; // Function to fe
 import { urlFor } from '../../../sanity/lib/sanity'; // Image URL builder
 import Image from 'next/image';
 import { notFound } from 'next/navigation'; // Used to render a "not found" page if the product doesn't exist
+import { Image as SanityImage } from '@sanity/types'; // Import the Image type from Sanity
 
 // Type for Product details
 interface Product {
@@ -11,7 +12,7 @@ interface Product {
   description?: string;
   category: string;
   colors: string[];
-  image?: any; // Image is now optional
+  image?: SanityImage; // Image type from Sanity
 }
 
 const ProductDetailPage = async ({ params }: { params: { id: string } }) => {
