@@ -15,7 +15,12 @@ interface Product {
   image?: SanityImage; // Image type from Sanity
 }
 
-const ProductDetailPage = async ({ params }: { params: { id: string } }) => {
+// Explicitly define the type for params
+interface ProductDetailPageProps {
+  params: { id: string };
+}
+
+const ProductDetailPage = async ({ params }: ProductDetailPageProps) => {
   const { id } = params; // Get the product ID from the URL
 
   let product: Product | null = null;
@@ -71,5 +76,3 @@ const ProductDetailPage = async ({ params }: { params: { id: string } }) => {
 };
 
 export default ProductDetailPage;
-
-
