@@ -20,10 +20,10 @@ export default function Best() {
     {
       id:2,
       image: shoe2,
-      name: "Nike Air Max Pulse",
-      price: "₹ 13,995",
+      name: "Nike Air Max SYSTM",
+      price: "₹ 6,495.00",
       category: "Mens Shoes",
-      description: "The Nike Air Max Pulse is a standout addition to any sneaker collection. With its cutting-edge design and performance-driven features, these shoes offer both style and comfort. The lightweight mesh upper provides breathability, ensuring your feet stay cool even during intense activities. The Air Max cushioning delivers exceptional support and cushioning, absorbing shock and enhancing comfort with each stride. Perfect for both casual wear and athletic performance, the Nike Air Max Pulse features a sleek design that pairs effortlessly with jeans, shorts, or workout gear. Whether you're training hard or enjoying a day off, these shoes will provide the comfort and style you need."
+      description: "The Nike Air Max SYSTM blends retro style with modern comfort, offering a sleek design for active kids. With a durable synthetic and leather upper, these shoes are built to last, while the Air Max cushioning ensures a soft, responsive ride. The classic Max Air unit provides all-day comfort, making these shoes perfect for everyday adventures, whether running or playing. The breathable upper keeps feet cool, while the rubber outsole delivers reliable traction for various surfaces."
     },
     {
       id:3,

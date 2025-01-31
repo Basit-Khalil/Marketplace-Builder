@@ -24,15 +24,15 @@ const productData2 = [
   {
     id:2,
     image: shoe2,
-    name: "Nike Air Max Pulse",
+    name: "Nike Air Max SYSTEM",
     price: "₹ 13,995",
     category: "Mens Shoes",
-    description: "The Nike Air Max Pulse is a standout addition to any sneaker collection. With its cutting-edge design and performance-driven features, these shoes offer both style and comfort. The lightweight mesh upper provides breathability, ensuring your feet stay cool even during intense activities. The Air Max cushioning delivers exceptional support and cushioning, absorbing shock and enhancing comfort with each stride. Perfect for both casual wear and athletic performance, the Nike Air Max Pulse features a sleek design that pairs effortlessly with jeans, shorts, or workout gear. Whether you're training hard or enjoying a day off, these shoes will provide the comfort and style you need."
+    description: "The Nike Air Max SYSTM blends retro style with modern comfort, offering a sleek design for active kids. With a durable synthetic and leather upper, these shoes are built to last, while the Air Max cushioning ensures a soft, responsive ride. The classic Max Air unit provides all-day comfort, making these shoes perfect for everyday adventures, whether running or playing. The breathable upper keeps feet cool, while the rubber outsole delivers reliable traction for various surfaces."
   },
   {
     id:3,
     image: shoe3,
-    name: "Nike Air Max 97 SE",
+    name: "Nike Air Max 97 E",
     price: "₹ 16,995",
     category: "Mens Shoes",
     description: "The Nike Air Max 97 SE redefines comfort and style with its innovative design and high-performance features. Featuring the iconic full-length Air Max cushioning, these shoes offer superior comfort and support, making them perfect for long hours of wear. The premium leather and synthetic upper provides a sleek, durable look that stands out with bold color accents and reflective details. The unique, wave-inspired design of the Nike Air Max 97 SE adds a modern twist to the classic Air Max silhouette, giving you a fashion-forward look without compromising on comfort. Ideal for both casual outings and active days, the Nike Air Max 97 SE ensures you step out in style and confidence."
