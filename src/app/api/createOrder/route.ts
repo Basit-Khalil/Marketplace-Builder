@@ -9,6 +9,13 @@ const sanityClient = createClient({
   apiVersion: "2023-01-01",
 });
 
+console.log({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+  token: process.env.SANITY_API_TOKEN,
+});
+
+
 type CartItem = {
   name: string;
   price: number;

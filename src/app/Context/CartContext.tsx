@@ -2,20 +2,22 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { StaticImageData } from 'next/image';
 
+// Define the CartItem interface where id is a string
 interface CartItem {
-  id: number;
-  image: StaticImageData | string;
+  id: string; // ID is a string (as it comes from Sanity or another source)
+  image: string | StaticImageData;
   productName: string;
-  detail: string;
-  quantity: number;
-  price: string;
+  description?: string; 
+    quantity: number;
+  price: number;
 }
 
+// Define the CartContext type, making sure to use string for id
 interface CartContextType {
   items: CartItem[];
   addItem: (item: CartItem) => void;
-  removeItem: (id: number) => void;
-  updateQuantity: (id: number, type: 'increase' | 'decrease') => void;
+  removeItem: (id: string) => void; // Expecting string id here
+  updateQuantity: (id: string, type: 'increase' | 'decrease') => void; // String id here as well
   clearCart: () => void;
 }
 
@@ -37,7 +39,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         const parsedCart = JSON.parse(savedCart);
         const hydratedCart = parsedCart.map((item: CartItem) => ({
           ...item,
-          image: item.image
+          image: item.image, // Make sure image is being treated as string
         }));
         setItems(hydratedCart);
       }
@@ -50,7 +52,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     try {
       const cartToSave = items.map(item => ({
         ...item,
-        image: typeof item.image === 'string' ? item.image : item.image.src
+        image: typeof item.image === 'string' ? item.image : item.image.src, // Ensure image is string
       }));
       localStorage.setItem('cart', JSON.stringify(cartToSave));
     } catch (error) {
@@ -72,22 +74,24 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     });
   };
 
-  const updateQuantity = (id: number, type: 'increase' | 'decrease') => {
-    setItems(currentItems => 
-      currentItems.map(item => {
-        if (item.id === id) {
-          const newQuantity = type === 'increase' ? item.quantity + 1 : item.quantity - 1;
-          if (newQuantity === 0) {
-            return null;
+  const updateQuantity = (id: string, type: 'increase' | 'decrease') => {
+    setItems(currentItems =>
+      currentItems
+        .map(item => {
+          if (item.id === id) {
+            const newQuantity = type === 'increase' ? item.quantity + 1 : item.quantity - 1;
+            if (newQuantity === 0) {
+              return null; // Return null if quantity reaches 0
+            }
+            return { ...item, quantity: newQuantity };
           }
-          return { ...item, quantity: newQuantity };
-        }
-        return item;
-      }).filter(Boolean) as CartItem[]
+          return item;
+        })
+        .filter(Boolean) as CartItem[] // Filter out nulls
     );
   };
 
-  const removeItem = (id: number) => {
+  const removeItem = (id: string) => {
     setItems(currentItems => currentItems.filter(item => item.id !== id));
   };
 

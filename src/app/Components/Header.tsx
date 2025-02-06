@@ -56,19 +56,19 @@ export default function Header() {
                 <Link href="/Products" className="hover:underline">
                   New & Featured
                 </Link>
-                <Link href="/Products" className="hover:underline">
+                <Link href="/Men" className="hover:underline">
                   Men
                 </Link>
-                <Link href="/Products" className="hover:underline">
+                <Link href="/Men" className="hover:underline">
                   Women
                 </Link>
                 <Link href="/Products" className="hover:underline">
                   Kids
                 </Link>
-                <Link href="/Products" className="hover:underline">
+                <Link href="/Men" className="hover:underline">
                   Sale
                 </Link>
-                <Link href="/Products" className="hover:underline" >
+                <Link href="/Men" className="hover:underline" >
                   SNKRS
                 </Link>
               </nav>
